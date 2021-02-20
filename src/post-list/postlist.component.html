@@ -12,10 +12,10 @@
           <div class="card-body">
             <h2 class="card-title">{{post.title}}</h2>
             <p class="card-text">{{post.body}}</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <a [routerLink]="['/detail',post.id]" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
+            By
             <a href="#">{{getUserName(post.userId)}}</a>
           </div>
         </div>

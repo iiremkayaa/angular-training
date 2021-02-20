@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NavigationComponent } from 'src/navbar/navbar.component';
 import { PostDetailComponent } from 'src/post-detail/detail.component';
+import { PostRouteActivator } from 'src/post-detail/post-route-activator.service';
 import { PostListComponent } from 'src/post-list/postlist.component';
 import { AddPostComponent } from './add-post/add.component';
 
@@ -32,7 +33,7 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PostService,UserService],
+  providers: [PostService,UserService,PostRouteActivator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

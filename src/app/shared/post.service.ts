@@ -10,6 +10,12 @@ export class PostService{
     getPosts():Observable<IPost[]>{
         return of(posts);
     }
+    getPost(id:number):Observable<IPost>{
+      return of(posts.filter(post=>post.id==id)[0])
+    }
+    getPostsByUserId(userId):Observable<IPost[]>{
+      return of(posts.filter(post=>post.userId==userId))
+    }
 }
 const posts :IPost[]=[
     {

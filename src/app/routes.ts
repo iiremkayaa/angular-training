@@ -11,5 +11,6 @@ export const appRoutes: Routes = [
     {path:'',redirectTo:'/posts',pathMatch:'full'},
     {path:'delete',component:DeletePostComponent},
     {path:'create',component:AddPostComponent},
-    {path:'login',component:LoginComponent}
+    {path:'login',component:LoginComponent},
+    {path:'detail/:id',component:PostDetailComponent}
 ]

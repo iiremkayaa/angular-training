@@ -19,8 +19,6 @@ export class PostListComponent implements OnInit {
     console.log(id);
     var filteredUser = this.users.filter(
       user => user['id'] === id)[0];
-    console.log(filteredUser);
-    console.log("--------------")
     return filteredUser['username'];
     
   }

@@ -10,6 +10,10 @@ export class UserService{
     getUsers():Observable<IUser[]>{
         return of(users);
     }
+    getUser(id:number):Observable<IUser>{
+      return of(users.filter(user=>user.id==id)[0])
+    }
+
 }
 const users :IUser[]=[
   {

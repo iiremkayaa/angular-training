@@ -15,10 +15,11 @@ import { appRoutes } from './routes';
 import { CommentService } from './shared/comment.service';
 import { PostService } from './shared/post.service';
 import {UserService} from './shared/user.service';
-import { UserDetailComponent } from './user/user-detail/user-detail.component';
-import { UserRouteActivator } from './user/user-detail/user-route-activator.service';
+import { ProfileComponent } from './user/profile/profile.component';
+import { UserRouteActivator } from './user/profile/user-route-activator.service';
 import { UserComponent } from './user/user.component';
-
+import {HttpClientModule} from '@angular/common/http';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +30,17 @@ import { UserComponent } from './user/user.component';
     DeletePostComponent,
     LoginComponent,
     UserComponent,
-    UserDetailComponent
+    ProfileComponent,
+    UserDetailComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    //PostListResolver
   ],
   providers: [PostService,UserService,PostRouteActivator,CommentService,UserRouteActivator],
   bootstrap: [AppComponent]

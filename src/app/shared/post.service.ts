@@ -1,20 +1,34 @@
 import { Injectable } from "@angular/core";
-import { Observable, of, Subject } from "rxjs";
+import { isObservable, Observable, of, Subject } from "rxjs";
 import { IPost } from "../post.model";
-
+import {catchError} from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
+import { filter,map } from 'rxjs/operators';
 @Injectable()
 export class PostService{
-    constructor(){
+    postList:IPost[];
+    constructor(private http:HttpClient){
 
     }
     getPosts():Observable<IPost[]>{
-        return of(posts);
+      return this.http.get<IPost[]>('https://jsonplaceholder.typicode.com/posts')
+      .pipe(catchError(this.handleError<IPost[]>('getPosts',[])));
+     
     }
     getPost(id:number):Observable<IPost>{
-      return of(posts.filter(post=>post.id==id)[0])
+      let post= this.http.get<IPost>('https://jsonplaceholder.typicode.com/posts/'+id)
+      return post.pipe(catchError(this.handleError<IPost>('getPost')));
     }
     getPostsByUserId(userId):Observable<IPost[]>{
-      return of(posts.filter(post=>post.userId==userId))
+      return of(posts);
+      //return this.http.get<IPost[]>('https://jsonplaceholder.typicode.com/posts')
+      //.pipe(catchError(this.handleError<IPost[]>('getPostsByUsername',[])));
+    }
+    private handleError<T> (operation='operation',result?:T){
+      return (error: any) : Observable<T> =>{
+        console.error(error);
+        return of(result as T)
+      }
     }
 }
 const posts :IPost[]=[

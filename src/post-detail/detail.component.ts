@@ -12,25 +12,24 @@ import { IUser } from 'src/app/user.model';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.css']
 })
-export class PostDetailComponent implements OnInit{
-  post:IPost;
-  user:IUser;
-  comments:IComment[];
-  constructor(private router:Router,private route:ActivatedRoute,
-    private postService:PostService,private userService:UserService,private commentService:CommentService){
+export class PostDetailComponent implements OnInit {
+  post: IPost;
+  user: IUser;
+  posts: IPost[]
+  comments: IComment[];
+  constructor( private route: ActivatedRoute,
+    private postService: PostService, private userService: UserService, private commentService: CommentService) {
+      let response = this.postService.getPost(+this.route.snapshot.params['id'])
+      response.subscribe(res => {
+        this.post = res;
+        this.userService.getUser(this.post.userId).subscribe(user=>{this.user=user});
+        this.commentService.getCommentsByPostId(this.post.userId).subscribe(comments=>this.comments=comments);
+
+      });
+
   }
-  ngOnInit(){
-    this.postService.getPost(+this.route.snapshot.params['id']).subscribe(post=>this.post=post);
-    this.userService.getUser(this.post['userId']).subscribe(user=>this.user=user);
-    this.commentService.getCommentsByPostId(this.post['id']).subscribe(comments=>this.comments=comments);
-    console.log(this.comments[0])
-    
-  }
-  getCommentByPostId(postId:number,comment){
-    console.log(comment)
-    /*var comment:IComment;
-    this.commentService.getComment(postId).subscribe(c=>comment=c);
-    return comment;*/
+  ngOnInit() {
+
   }
 
 }

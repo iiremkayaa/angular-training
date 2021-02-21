@@ -1,8 +1,8 @@
 <div class="container mt-5 pt-5" >
-    <form #userForm="ngForm" >
+    <form #userForm="ngForm" (ngSubmit)="saveChanges(userForm)" >
         <div class="form-group">
             <label for="name">Full Name</label>
-            <input [(ngModel)]="this.user.name" readonly name="name" #name="ngModel" type="text" class="form-control" id="name" required >
+            <input [(ngModel)]="this.user.name" name="name" #name="ngModel" type="text" class="form-control" id="name" required >
             <div *ngIf="name.invalid" class="alert alert-danger">
                 <div *ngIf="name.errors.required">
                     Name is required.
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input [(ngModel)]="this.user.username" readonly name="username" #username="ngModel" type="text" class="form-control" id="username" required >
+            <input [(ngModel)]="this.user.username" name="username" #username="ngModel" type="text" class="form-control" id="username" required >
             <div *ngIf="username.invalid" class="alert alert-danger">
                 <div *ngIf="username.errors.required">
                     Username is required.
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" [(ngModel)]="this.user.email"  readonly #email="ngModel" name="email" class="form-control" id="email" placeholder="name@example.com" required>
+          <input type="email" [(ngModel)]="this.user.email" #email="ngModel" name="email" class="form-control" id="email" placeholder="name@example.com" required>
           <div *ngIf="email.invalid" class="alert alert-danger">
             <div *ngIf="email.errors.required">
                 Email is required.
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input type="text" [(ngModel)]="this.user.phone" readonly #phone="ngModel" name="phone" class="form-control" id="phone" required>
+            <input type="text" [(ngModel)]="this.user.phone" #phone="ngModel" name="phone" class="form-control" id="phone" required>
             <div *ngIf="phone.invalid" class="alert alert-danger">
                 <div *ngIf="phone.errors.required">
                     Phone is required.
@@ -38,39 +38,42 @@
         </div>
         <div class="form-group">
             <label for="website">Website</label>
-            <input type="text" [(ngModel)]="this.user.website" readonly #website="ngModel" name="website" class="form-control" id="website" >
+            <input type="text" [(ngModel)]="this.user.website" #website="ngModel" name="website" class="form-control" id="website" >
         </div>
         <div class="form-group row">
             <div class="col">
                 <label for="street">Street</label>
-                <input type="text" [(ngModel)]="this.user.address.street" readonly #street="ngModel" name="street" class="form-control" id="street">
+                <input type="text" [(ngModel)]="this.user.address.street" #street="ngModel" name="street" class="form-control" id="street">
             </div>
             <div class="col">
                 <label for="suite">Suite</label>
-                <input type="text" [(ngModel)]="this.user.address.suite" readonly #suite="ngModel" name="suite" class="form-control" id="suite" >
+                <input type="text" [(ngModel)]="this.user.address.suite" #suite="ngModel" name="suite" class="form-control" id="suite" >
             </div>
             <div class="col">
                 <label for="city">City</label>
-                <input type="text" [(ngModel)]="this.user.address.city" readonly #city="ngModel" name="city" class="form-control" id="city">
+                <input type="text" [(ngModel)]="this.user.address.city" #city="ngModel" name="city" class="form-control" id="city">
             </div>
             <div class="col">
                 <label for="zipcode">Zipcode</label>
-                <input type="text" [(ngModel)]="this.user.address.zipcode" readonly #zipcode="ngModel" name="zipCode" class="form-control" id="zipcode">
+                <input type="text" [(ngModel)]="this.user.address.zipcode" #zipcode="ngModel" name="zipCode" class="form-control" id="zipcode">
             </div>
         </div>
         <div class="form-group row">
             <div class="col">
                 <label for="companyName">Company Name</label>
-                <input type="text" [(ngModel)]="this.user.company.name" readonly #companyName="ngModel" name="companyName" class="form-control" id="companyName">
+                <input type="text" [(ngModel)]="this.user.company.name" #companyName="ngModel" name="companyName" class="form-control" id="companyName">
             </div>
             <div class="col">
                 <label for="companyCatchPhrase">Company Catch Phrase</label>
-                <input type="text" [(ngModel)]="this.user.company.catchPhrase" readonly #companyCatchPhrase="ngModel" name="companyCatchPhrase" class="form-control" id="companyCatchPhrase" >
+                <input type="text" [(ngModel)]="this.user.company.catchPhrase" #companyCatchPhrase="ngModel" name="companyCatchPhrase" class="form-control" id="companyCatchPhrase" >
             </div>
             <div class="col">
                 <label for="companyBs">Company bs</label>
-                <input type="text" [(ngModel)]="this.user.company.bs" readonly #companyBs="ngModel" name="companyBs" class="form-control" id="companyBs">
+                <input type="text" [(ngModel)]="this.user.company.bs" #companyBs="ngModel" name="companyBs" class="form-control" id="companyBs">
             </div>
+        </div>
+        <div class="ml-1 row">
+                <button type="submit" class="btn btn-primary mr-2" [disabled]="userForm.form.invalid">Save</button>
         </div>
 
       </form>

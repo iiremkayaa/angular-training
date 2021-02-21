@@ -16,7 +16,6 @@ export class PostListComponent implements OnInit {
     userService.getUsers().subscribe(users=>this.users=users);
   }
   getUserName(id){
-    console.log(id);
     var filteredUser = this.users.filter(
       user => user['id'] === id)[0];
     return filteredUser['username'];

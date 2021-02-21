@@ -16,7 +16,7 @@
           </div>
           <div class="card-footer text-muted">
             By
-            <a href="#">{{getUserName(post.userId)}}</a>
+            <a [routerLink]="['/user',post.userId]">{{getUserName(post.userId)}}</a>
           </div>
         </div>
       </div>

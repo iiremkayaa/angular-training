@@ -12,8 +12,11 @@ import { AppComponent } from './app.component';
 import { DeletePostComponent } from './delete-post/delete.component';
 import { LoginComponent } from './login/login.component';
 import { appRoutes } from './routes';
+import { CommentService } from './shared/comment.service';
 import { PostService } from './shared/post.service';
 import {UserService} from './shared/user.service';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserRouteActivator } from './user/user-detail/user-route-activator.service';
 import { UserComponent } from './user/user.component';
 
 @NgModule({
@@ -25,7 +28,8 @@ import { UserComponent } from './user/user.component';
     AddPostComponent,
     DeletePostComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,7 @@ import { UserComponent } from './user/user.component';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [PostService,UserService,PostRouteActivator],
+  providers: [PostService,UserService,PostRouteActivator,CommentService,UserRouteActivator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

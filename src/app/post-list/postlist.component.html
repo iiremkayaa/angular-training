@@ -1,0 +1,51 @@
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8" *ngIf="this.posts">
+      <div class="card mb-4 my-4" *ngFor="let post of posts">
+        <div class="card-body">
+          <h2 class="card-title">{{post?.title | uppercase}}</h2>
+          <p class="card-text">{{post?.body | body}} <a [routerLink]="['/detail',post?.id]">Read More &rarr;</a></p>
+
+        </div>
+        <div class="card-footer text-muted">
+          By
+          <a [routerLink]="['/user',post.userId]">{{this.getUserName(post?.userId)}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+          <form name="searchForm" id="searchForm" (ngSubmit)="searchThis(searchForm)"  #searchForm="ngForm">
+            <div class="form-group">
+
+              <input type="radio" id="word" name="search" value="word" checked="checked" ngModel>
+              <label for="word"  class="ml-2"> By word</label><br>
+              <input type="radio" id="user" name="search" value="user" ngModel>
+              <label for="user"  class="ml-2"> By user</label><br>
+         
+              
+              <input type="text" class="form-control" [(ngModel)]="searchTerm" name="searchTerm"
+                placeholder="Search for...">
+              <span class="input-group-append mt-2">
+                <button modal-trigger="searchResults" class="btn btn-secondary" type="submit">Go!</button>
+              </span>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<simple-modal closeOnBodyClick="true" elementId="searchResults" title="Matching Post">
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let post of foundedPosts" [routerLink]="['/detail', post.id]">{{post.title}}</a>
+  </div>
+</simple-modal>

@@ -1,4 +1,4 @@
-<div class="container mt-5 pt-5" >
+<div class="container mt-4 pt-5" *ngIf="this.authenticatedUser">
     <form [formGroup]="postForm" (ngSubmit)="sendPost(postForm.value)" novalidate>
         <div class="form-group">
             <label for="title">Title</label>
@@ -17,6 +17,9 @@
                     Body is required.
                 </div>
             </div>
+        </div>
+        <div *ngIf="this.isSubmitted">
+
         </div>
         <div class="ml-1 row">
                 <button type="submit" class="btn btn-primary mr-2" [disabled]="postForm.invalid" >Send</button>

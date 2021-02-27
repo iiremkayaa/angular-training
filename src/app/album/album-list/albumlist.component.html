@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row" *ngIf="this.albums">
+    <div class="col">
+      <div class="card mb-4 my-4" *ngFor="let album of albums">
+        <div class="card-body">
+          <h3 class="card-title">{{album.title |uppercase}}</h3>
+          <hr>
+          <photo-list [albumId]="album.id"></photo-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="padding-top: 30px;" *ngIf="!isExist()">
+  <div class="row mb-4 my-4" >
+    <h6 class="my-4">
+      There is no album.
+    </h6>
+  </div>
+</div>
+
+

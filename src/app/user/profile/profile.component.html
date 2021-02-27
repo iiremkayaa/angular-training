@@ -1,5 +1,6 @@
-<div class="container mt-5 pt-5" >
-    <form #userForm="ngForm" (ngSubmit)="saveChanges(userForm)" >
+<div class="container mt-5 pt-5" *ngIf="this.user">
+
+    <form #userForm="ngForm" (ngSubmit)="saveChanges(userForm)" novalidate>
         <div class="form-group">
             <label for="name">Full Name</label>
             <input [(ngModel)]="this.user.name" name="name" #name="ngModel" type="text" class="form-control" id="name" required >
@@ -77,4 +78,5 @@
         </div>
 
       </form>
+
 </div>

@@ -1,43 +1,54 @@
+<div class="container mt-5" *ngIf="this.authenticatedUser">
 
-  <div class="container mt-5">
+  <div class="row" *ngIf="this.posts">
 
-    <div class="row">
-
-      <div class="col-md-8">
-
-        <h1 class="my-4">Leanne Graham
-        </h1>
-
-        <div class="card mb-4" *ngFor="let post of posts">
-          <div class="card-body">
-            <h2 class="card-title">{{post.title}}</h2>
-            <p class="card-text">{{post.body}}</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-            <a href="#" class="btn btn-primary ml-2">Delete</a>
-          </div>
+    <div class="col-md-8">
+      <div class="row" *ngIf="this.posts.length==0">
+        <h6 class="my-4">
+          You have no published post.
+        </h6>
+    
+      </div>
+      <div class="card mb-4" *ngFor="let post of posts">
+        <div class="card-body">
+          <h2 class="card-title">{{post.title |uppercase}}</h2>
+          <p class="card-text">{{post.body}}</p>
+          <p class="card-text">{{post.body | body}} <a [routerLink]="['/detail',post.id]">Read More &rarr;</a></p>
+          <button (click)="deletePost(post)" class="btn btn-primary ">Delete</button>
         </div>
       </div>
+    </div>
 
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
 
-        <!-- Search Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
+      <!-- Search Widget -->
+      <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+
+          <form id="searchForm" (ngSubmit)="searchThis()">
+            <div class="form-group">
+              <input type="text" class="form-control" [(ngModel)]="searchTerm" name="searchTerm"
+                placeholder="Search for...">
+              <span class="input-group-append mt-2">
+                <button modal-trigger="searchResults" class="btn btn-secondary" type="submit">Go!</button>
               </span>
             </div>
-          </div>
+          </form>
         </div>
-
-        
-
       </div>
+
+
 
     </div>
 
   </div>
+  
+</div>
+
+<simple-modal closeOnBodyClick="true" elementId="searchResults" title="Matching Post">
+  <div class="list-group">
+    <a class="list-group-item" *ngFor="let post of foundedPosts" [routerLink]="['/detail', post.id]">{{post.title}}</a>
+  </div>
+</simple-modal>

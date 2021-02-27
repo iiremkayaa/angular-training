@@ -1,0 +1,20 @@
+
+<div *ngIf="this.photos?.length>0">
+        <h3>Photo List</h3>
+        <div *ngFor='let in of counter(this.photos.length) ;let i = index' >
+        <div class="row" *ngIf="i % 3 ===0">
+            <div class="col" *ngIf="i<this.photos.length">
+                <p class="font-weight-bold">{{photos[i]?.title}}</p>
+                <img src="{{photos[i]?.thumbnailUrl}}">
+            </div>
+            <div class="col" *ngIf="i<this.photos.length">
+                <p class="font-weight-bold">{{photos[i+1]?.title}}</p>
+                <img src="{{photos[i+1]?.thumbnailUrl}}">
+            </div>
+            <div class="col" *ngIf="i<this.photos.length">
+                <p class="font-weight-bold">{{photos[i+2]?.title}}</p>
+                <img src="{{photos[i+2]?.thumbnailUrl}}">
+            </div>
+        </div>
+    </div>
+</div>

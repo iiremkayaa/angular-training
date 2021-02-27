@@ -7,6 +7,7 @@ export interface IUser {
         phone: string;
         website: string;
         company: ICompany;
+        password: string;
 }
 export interface IAddress {
         street: string;

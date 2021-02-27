@@ -51,12 +51,15 @@ export class RegisterComponent {
                 address: addresses,
                 phone: '',
                 website: '',
-                company
+                password: '',
+                company,
+
             };
             newUser.name = values.name;
             newUser.email = values.email;
             newUser.username = values.username;
             newUser.phone = values.phone;
+            newUser.password = values.password;
             this.userService.postUser(newUser);
             this.isRegistered = true;
             this.authService.loginUser(form.value.username, form.value.password);

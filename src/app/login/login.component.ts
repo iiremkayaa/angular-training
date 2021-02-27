@@ -31,7 +31,12 @@ export class LoginComponent {
           this.loginInvalid = true;
         }
         else {
-          this.router.navigate(['posts']);
+          if (user[0].password == form.password) {
+            this.router.navigate(['posts']);
+          }
+          else{
+            this.loginInvalid = true;
+          }
         }
       });
       this.showSpinner = false;

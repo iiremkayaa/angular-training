@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit {
                 phone: form.value.phone ?? '',
                 website: form.value.website ?? '',
                 company,
+                password:form.value.password
             };
             this.userService.updateUser(updatedUser);
             alert('Changes saved successfully');
